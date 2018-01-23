@@ -1,0 +1,30 @@
+apiVersion: kubeadm.k8s.io/v1alpha1
+kind: MasterConfiguration
+kubernetesVersion: v1.9.0
+networking:
+  podSubnet: 10.244.0.0/16
+  bindPort:6443
+api:
+  advertiseAddress: 192.168.50.211
+apiServerCertSANs:
+- node1
+- node0
+- etcd0
+- etcd1
+- etcd2
+- 192.168.50.210
+- 192.168.50.211
+- 192.168.50.209
+selfHosted: true
+#featureGates:
+#  CoreDNS: true
+tokenTtl: 99999h
+etcd:
+  endpoints:
+  - http://192.168.50.210:2379
+  - http://192.168.50.211:2379
+  - http://192.168.50.212:2379
+controllerManagerExtraArgs:
+  address: 0.0.0.0
+schedulerExtraArgs:
+  address: 0.0.0.0
