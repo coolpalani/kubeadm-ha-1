@@ -269,3 +269,10 @@ spec:
 kubectl create clusterrolebinding node0 --clusterrole=cluster-admin --user=system:node:node0
 kubectl create clusterrolebinding node1 --clusterrole=cluster-admin --user=system:node:node1
 
+
+// modifications for prometheus-operator
+change address from 127.0.0.1 to 0.0.0.0 in etc/kubernetes/manifests/kube-scheduler.yaml, and kube-controller-manager.yaml
+//and expose cAdvisor on all nodes
+sed -e "/cadvisor-port=0/d" -i /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+systemctl daemon-reload
+systemctl restart kubelet
