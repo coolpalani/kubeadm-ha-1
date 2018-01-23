@@ -1,4 +1,6 @@
-kubeadm ha
+kubeadm ha notes
+
+TODO: automation
 
 // install keepalived
 yum install -y keepalived; systemctl enable keepalived && systemctl restart keepalived
